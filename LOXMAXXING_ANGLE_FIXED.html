@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LANX LOXMAXXING</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    background:#050505;
+    color:white;
+    font-family:Inter,Arial,sans-serif;
+    min-height:100%;
+}
+
+body{
+    overflow-x:hidden;
+    padding-bottom:90px;
+}
+
+button{
+    font-family:inherit;
+    border:0;
+    outline:none !important;
+}
+
+button:focus,
+button:active{
+    outline:none !important;
+    box-shadow:none !important;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    padding:18px 16px 14px;
+    background:rgba(5,5,5,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    font-family:Orbitron;
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff1744;
+}
+
+.sub{
+    color:#888;
+    font-size:11px;
+    margin-top:5px;
+    letter-spacing:1px;
+}
+
+.container{
+    width:min(700px,94%);
+    margin:auto;
+}
+
+.hero{
+    margin-top:18px;
+    padding:25px 20px;
+    border:1px solid #242424;
+    border-radius:24px;
+    background:
+      radial-gradient(circle at 90% 10%,rgba(255,23,68,.18),transparent 35%),
+      linear-gradient(145deg,#111,#080808);
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:28px;
+    margin:0 0 10px;
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.55;
+    font-size:13px;
+}
+
+.red{
+    color:#ff1744;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    margin-top:12px;
+    border-radius:14px;
+    color:white;
+    background:#ff1744;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.btn.dark{
+    background:#171717;
+    border:1px solid #292929;
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+.section-title{
+    font-family:Orbitron;
+    font-size:17px;
+    margin:28px 2px 12px;
+}
+
+.card{
+    background:#0e0e0e;
+    border:1px solid #252525;
+    border-radius:19px;
+    padding:17px;
+    margin:11px 0;
+}
+
+.card h3{
+    margin:0 0 7px;
+    font-size:16px;
+}
+
+.card p{
+    color:#929292;
+    font-size:12px;
+    line-height:1.5;
+    margin:0;
+}
+
+.exercise-row{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:#191919;
+    font-size:23px;
+}
+
+.info{
+    flex:1;
+}
+
+.mini{
+    color:#777;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.done{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#181818;
+    color:#777;
+    font-size:18px;
+}
+
+.done.active{
+    background:#ff1744;
+    color:#fff;
+}
+
+.progress-box{
+    margin-top:15px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#999;
+}
+
+.progress{
+    height:9px;
+    margin-top:8px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#1b1b1b;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#ff1744,#ff526f);
+    transition:.4s;
+}
+
+.days{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin-top:15px;
+}
+
+.day{
+    padding:12px 5px;
+    text-align:center;
+    background:#111;
+    border:1px solid #252525;
+    border-radius:12px;
+    font-size:11px;
+    color:#777;
+}
+
+.day.current{
+    border-color:#ff1744;
+    color:#fff;
+}
+
+.day.completed{
+    background:#351019;
+    color:#ff5b79;
+}
+
+.scan{
+    text-align:center;
+    padding:22px 15px;
+}
+
+.face-box{
+    width:190px;
+    height:240px;
+    margin:10px auto 18px;
+    border:2px solid #ff1744;
+    border-radius:50% 50% 45% 45%;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 35%,#282828,transparent 30%),
+      linear-gradient(#121212,#080808);
+    animation:pulse 2.5s infinite;
+}
+
+.face-3d{
+    position:absolute;
+    width:115px;
+    height:155px;
+    left:50%;
+    top:40px;
+    transform:translateX(-50%);
+    border-radius:48% 48% 45% 45%;
+    background:
+      radial-gradient(circle at 35% 37%,#fff 0 3px,transparent 4px),
+      radial-gradient(circle at 65% 37%,#fff 0 3px,transparent 4px),
+      linear-gradient(120deg,#555,#202020 55%,#111);
+    box-shadow:inset -18px -12px 25px rgba(0,0,0,.7);
+    animation:float 3s ease-in-out infinite;
+}
+
+.eye{
+    position:absolute;
+    width:30px;
+    height:8px;
+    border-top:2px solid white;
+    border-radius:50%;
+    top:57px;
+}
+
+.eye.left{left:25px}
+.eye.right{right:25px}
+
+.nose{
+    position:absolute;
+    width:2px;
+    height:35px;
+    background:#999;
+    left:50%;
+    top:65px;
+}
+
+.mouth{
+    position:absolute;
+    width:35px;
+    height:12px;
+    border-bottom:2px solid #aaa;
+    border-radius:50%;
+    left:50%;
+    transform:translateX(-50%);
+    top:108px;
+}
+
+.scan-line{
+    position:absolute;
+    left:10px;
+    right:10px;
+    height:2px;
+    background:#ff1744;
+    box-shadow:0 0 12px #ff1744;
+    animation:scan 2s infinite;
+}
+
+@keyframes scan{
+    0%{top:10px}
+    50%{top:220px}
+    100%{top:10px}
+}
+
+@keyframes pulse{
+    50%{box-shadow:0 0 35px rgba(255,23,68,.15)}
+}
+
+@keyframes float{
+    50%{transform:translateX(-50%) translateY(-6px)}
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+
+.metric{
+    background:#111;
+    border:1px solid #252525;
+    border-radius:14px;
+    padding:15px;
+}
+
+.metric b{
+    display:block;
+    font-family:Orbitron;
+    color:#ff1744;
+    font-size:20px;
+}
+
+.metric span{
+    color:#777;
+    font-size:10px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,0,0,.82);
+    align-items:flex-end;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-height:85vh;
+    overflow:auto;
+    background:#101010;
+    border-radius:25px 25px 0 0;
+    padding:22px;
+    border-top:1px solid #333;
+}
+
+.close{
+    float:right;
+    background:#222;
+    color:#fff;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+}
+
+.timer{
+    font-family:Orbitron;
+    font-size:44px;
+    text-align:center;
+    color:#ff1744;
+    margin:25px 0;
+}
+
+.exercise-visual{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    margin:20px auto;
+    background:
+      radial-gradient(circle,#333 0 35%,#181818 36% 65%,#0d0d0d 66%);
+    display:grid;
+    place-items:center;
+    font-size:65px;
+    animation:exerciseMove 2s ease-in-out infinite;
+}
+
+@keyframes exerciseMove{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+}
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:80;
+    height:72px;
+    background:rgba(8,8,8,.96);
+    backdrop-filter:blur(15px);
+    border-top:1px solid #252525;
+    display:flex;
+    justify-content:space-around;
+}
+
+.nav button{
+    flex:1;
+    background:transparent;
+    color:#666;
+    font-size:10px;
+}
+
+.nav button.active{
+    color:#ff1744;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.notice{
+    margin-top:15px;
+    padding:13px;
+    border-radius:13px;
+    background:#15100f;
+    border:1px solid #35201e;
+    color:#aaa;
+    font-size:11px;
+    line-height:1.5;
+}
+
+/* MULTI-ANGLE FACE ANALYSIS */
+.angle-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+.angle-card{
+    background:#111;
+    border:1px solid #252525;
+    border-radius:16px;
+    padding:13px;
+}
+.angle-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+.angle-name{
+    font-family:Orbitron;
+    font-size:11px;
+}
+.angle-state{
+    color:#777;
+    font-size:9px;
+}
+.angle-preview{
+    height:115px;
+    border-radius:12px;
+    border:1px solid #242424;
+    background:
+      radial-gradient(circle at 50% 45%,#303030 0 23%,transparent 24%),
+      linear-gradient(135deg,#151515,#090909);
+    display:grid;
+    place-items:center;
+    font-size:38px;
+    overflow:hidden;
+}
+.angle-card .metric-line{
+    display:flex;
+    justify-content:space-between;
+    margin-top:9px;
+    color:#777;
+    font-size:9px;
+}
+.angle-card .metric-line b{
+    color:#ff1744;
+    font-size:10px;
+}
+.angle-action{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    border-radius:10px;
+    background:#1a1a1a;
+    color:#fff;
+    border:1px solid #292929;
+    font-size:10px;
+    font-weight:700;
+}
+.angle-action.active{
+    background:#351019;
+    border-color:#ff1744;
+}
+.overall-tech{
+    margin-top:14px;
+    padding:15px;
+    border-radius:15px;
+    background:linear-gradient(145deg,#161616,#0d0d0d);
+    border:1px solid #292929;
+}
+.overall-tech .big{
+    font-family:Orbitron;
+    font-size:27px;
+    color:#ff1744;
+}
+.small-note{
+    color:#777;
+    font-size:10px;
+    line-height:1.5;
+    margin-top:6px;
+}
+@media(max-width:380px){
+    .angle-grid{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">LANX <span>LOXMAXXING</span></div>
+    <div class="sub">30 DAY FACE & POSTURE WELLNESS</div>
+</header>
+
+<main class="container">
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+    <div class="hero">
+        <h1>30 DAY <span class="red">PROGRAM</span></h1>
+        <p>
+            Program latihan ringan untuk membantu kebiasaan postur,
+            mobilitas wajah, relaksasi, dan kebugaran harian.
+        </p>
+
+        <button class="btn" onclick="startToday()">
+            START TODAY
+        </button>
+
+        <div class="progress-box">
+            <div class="progress-top">
+                <span>PROGRESS</span>
+                <span id="progressText">0%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">TODAY'S TRAINING</div>
+
+    <div id="exerciseList"></div>
+
+    <div class="section-title">30 DAY STREAK</div>
+    <div class="card">
+        <div class="days" id="days"></div>
+    </div>
+
+    <div class="notice">
+        ⚡ Latihan wajah tidak dapat membakar lemak pada satu area tertentu.
+        Program ini berfokus pada kebiasaan sehat, relaksasi, mobilitas,
+        dan postur.
+    </div>
+
+</section>
+
+
+<!-- SCAN -->
+<section id="scan" class="page">
+
+    <div class="section-title">AI FACE SCAN</div>
+
+    <div class="card scan">
+
+        <div class="face-box">
+            <div class="face-3d">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+            <div class="scan-line"></div>
+        </div>
+
+        <h3 id="scanStatus">READY TO SCAN</h3>
+
+        <p>
+            Analisis visual simulasi untuk membantu melihat
+            alignment dan simetri secara teknis.
+        </p>
+
+        <button class="btn" onclick="runScan()">
+            START AI SCAN
+        </button>
+
+        <div class="metrics">
+
+            <div class="metric">
+                <b id="symmetry">--</b>
+                <span>SIMETRI VISUAL</span>
+            </div>
+
+            <div class="metric">
+                <b id="eyeAlign">--</b>
+                <span>EYE ALIGNMENT</span>
+            </div>
+
+            <div class="metric">
+                <b id="jawAlign">--</b>
+                <span>LOWER FACE ALIGNMENT</span>
+            </div>
+
+            <div class="metric">
+                <b id="posture">--</b>
+                <span>POSTURE CHECK</span>
+            </div>
+
+        </div>
+
+        <div class="section-title" style="text-align:left;margin-top:24px">
+            MULTI-ANGLE ANALYSIS
+        </div>
+
+        <div class="angle-grid">
+
+            <div class="angle-card">
+                <div class="angle-head">
+                    <span class="angle-name">FRONT 0°</span>
+                    <span class="angle-state" id="a0state">READY</span>
+                </div>
+                <div class="angle-preview">🙂</div>
+                <div class="metric-line"><span>Symmetry</span><b id="a0sym">--</b></div>
+                <div class="metric-line"><span>Alignment</span><b id="a0align">--</b></div>
+                <button class="angle-action" onclick="analyzeAngle(0)">ANALYZE</button>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-head">
+                    <span class="angle-name">LEFT 45°</span>
+                    <span class="angle-state" id="a1state">READY</span>
+                </div>
+                <div class="angle-preview">↙️</div>
+                <div class="metric-line"><span>Alignment</span><b id="a1align">--</b></div>
+                <div class="metric-line"><span>Pose</span><b id="a1pose">--</b></div>
+                <button class="angle-action" onclick="analyzeAngle(1)">ANALYZE</button>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-head">
+                    <span class="angle-name">RIGHT 45°</span>
+                    <span class="angle-state" id="a2state">READY</span>
+                </div>
+                <div class="angle-preview">↘️</div>
+                <div class="metric-line"><span>Alignment</span><b id="a2align">--</b></div>
+                <div class="metric-line"><span>Pose</span><b id="a2pose">--</b></div>
+                <button class="angle-action" onclick="analyzeAngle(2)">ANALYZE</button>
+            </div>
+
+            <div class="angle-card">
+                <div class="angle-head">
+                    <span class="angle-name">PROFILE 90°</span>
+                    <span class="angle-state" id="a3state">READY</span>
+                </div>
+                <div class="angle-preview">👤</div>
+                <div class="metric-line"><span>Head alignment</span><b id="a3align">--</b></div>
+                <div class="metric-line"><span>Posture</span><b id="a3pose">--</b></div>
+                <button class="angle-action" onclick="analyzeAngle(3)">ANALYZE</button>
+            </div>
+
+        </div>
+
+        <div class="overall-tech">
+            <div style="font-size:10px;color:#777">TECHNICAL CONSISTENCY</div>
+            <div class="big" id="angleOverall">--</div>
+            <div class="small-note">
+                Ini adalah indikator teknis simulasi untuk konsistensi pose,
+                simetri visual, dan alignment dari beberapa sudut — bukan
+                rating ketampanan atau standar bentuk wajah.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="notice">
+        Hasil ini bukan diagnosis medis dan bukan penilaian ketampanan.
+        Kamera asli tidak digunakan oleh demo ini.
+    </div>
+
+</section>
+
+
+<!-- WORKOUT -->
+<section id="workout" class="page">
+
+    <div class="section-title">ALL TRAINING</div>
+
+    <div id="allExercises"></div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+
+    <div class="section-title">MY PROGRESS</div>
+
+    <div class="card">
+        <h3>LANX LEVEL</h3>
+        <p id="levelName">PEMULA</p>
+
+        <div class="progress-box">
+            <div class="progress-top">
+                <span id="xpText">0 XP</span>
+                <span>500 XP</span>
+            </div>
+
+            <div class="progress">
+                <div class="progress-fill" id="xpBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="metrics">
+
+        <div class="metric">
+            <b id="daysDone">0</b>
+            <span>DAYS DONE</span>
+        </div>
+
+        <div class="metric">
+            <b id="xp">0</b>
+            <span>XP</span>
+        </div>
+
+        <div class="metric">
+            <b id="streak">0</b>
+            <span>STREAK</span>
+        </div>
+
+        <div class="metric">
+            <b>30</b>
+            <span>TARGET DAYS</span>
+        </div>
+
+    </div>
+
+    <div class="section-title">PROGRAM NOTES</div>
+
+    <div class="card">
+        <p>
+            Fokus program: tidur cukup, aktivitas fisik rutin,
+            postur baik, relaksasi wajah, dan kebiasaan sehat.
+        </p>
+    </div>
+
+    <button class="btn dark" onclick="resetData()">
+        RESET PROGRESS
+    </button>
+
+</section>
+
+</main>
+
+
+<!-- MODAL -->
+<div class="modal" id="exerciseModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div id="modalIcon" class="exercise-visual">🙂</div>
+
+        <h2 id="modalTitle">EXERCISE</h2>
+
+        <p id="modalDescription" style="color:#888;line-height:1.5;"></p>
+
+        <div class="timer" id="timer">30</div>
+
+        <button class="btn" id="timerBtn" onclick="startTimer()">
+            START TIMER
+        </button>
+
+    </div>
+
+</div>
+
+
+<nav class="nav">
+
+    <button class="active" onclick="showPage('home',this)">
+        <span class="nav-icon">⌂</span>
+        HOME
+    </button>
+
+    <button onclick="showPage('scan',this)">
+        <span class="nav-icon">◉</span>
+        AI SCAN
+    </button>
+
+    <button onclick="showPage('workout',this)">
+        <span class="nav-icon">⚡</span>
+        TRAIN
+    </button>
+
+    <button onclick="showPage('profile',this)">
+        <span class="nav-icon">●</span>
+        PROFILE
+    </button>
+
+</nav>
+
+
+<script>
+
+const exercises = [
+
+    {
+        name:"NECK POSTURE RESET",
+        icon:"🧍",
+        time:30,
+        desc:"Duduk tegak. Tarik kepala perlahan ke posisi netral tanpa memaksa leher."
+    },
+
+    {
+        name:"CHIN TUCK",
+        icon:"⬇️",
+        time:30,
+        desc:"Gerakkan dagu sedikit ke belakang secara perlahan. Jangan menekan leher."
+    },
+
+    {
+        name:"JAW RELAX",
+        icon:"😮",
+        time:30,
+        desc:"Lemaskan rahang. Biarkan gigi tidak saling menekan dan tarik napas perlahan."
+    },
+
+    {
+        name:"FACE RELAXATION",
+        icon:"😌",
+        time:30,
+        desc:"Rilekskan dahi, mata, pipi dan rahang sambil bernapas dengan tenang."
+    },
+
+    {
+        name:"EYE FOCUS",
+        icon:"👁️",
+        time:30,
+        desc:"Lihat satu titik pada jarak nyaman. Jangan memaksa mata atau menatap terlalu lama."
+    },
+
+    {
+        name:"SHOULDER RESET",
+        icon:"💪",
+        time:30,
+        desc:"Turunkan bahu dan tarik perlahan ke belakang. Hindari gerakan mendadak."
+    },
+
+    {
+        name:"DEEP BREATHING",
+        icon:"🌬️",
+        time:45,
+        desc:"Tarik napas perlahan melalui hidung dan keluarkan dengan santai."
+    },
+
+    {
+        name:"POSTURE WALK",
+        icon:"🚶",
+        time:60,
+        desc:"Berjalan santai dengan kepala netral, bahu rileks dan pandangan ke depan."
+    },
+
+    {
+        name:"NECK MOBILITY",
+        icon:"🔄",
+        time:30,
+        desc:"Gerakkan leher perlahan dalam rentang yang nyaman. Hentikan jika terasa sakit."
+    },
+
+    {
+        name:"MORNING RESET",
+        icon:"☀️",
+        time:45,
+        desc:"Kombinasikan napas, postur tegak dan relaksasi wajah selama beberapa saat."
+    }
+
+];
+
+let data = JSON.parse(localStorage.getItem("lanxLoxData")) || {
+    completed:[],
+    xp:0,
+    streak:0,
+    lastDay:""
+};
+
+let selectedExercise = null;
+let timerInterval = null;
+let timeLeft = 30;
+
+
+function save(){
+    localStorage.setItem("lanxLoxData",JSON.stringify(data));
+}
+
+
+function showPage(id,button){
+
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    document.querySelectorAll(".nav button").forEach(b=>{
+        b.classList.remove("active");
+    });
+
+    if(button) button.classList.add("active");
+
+    updateUI();
+}
+
+
+function renderExercises(){
+
+    const list=document.getElementById("exerciseList");
+    const all=document.getElementById("allExercises");
+
+    list.innerHTML="";
+    all.innerHTML="";
+
+    exercises.slice(0,5).forEach((e,i)=>{
+        list.appendChild(createExercise(e,i));
+    });
+
+    exercises.forEach((e,i)=>{
+        all.appendChild(createExercise(e,i));
+    });
+}
+
+
+function createExercise(e,index){
+
+    const card=document.createElement("div");
+    card.className="card";
+
+    const done=data.completed.includes(index);
+
+    card.innerHTML=`
+
+        <div class="exercise-row">
+
+            <div class="icon">${e.icon}</div>
+
+            <div class="info">
+                <h3>${e.name}</h3>
+                <div class="mini">${e.time} SEC • SAFE MODE</div>
+            </div>
+
+            <button class="done ${done?'active':''}"
+                    onclick="event.stopPropagation();completeExercise(${index})">
+                ${done?'✓':'+'}
+            </button>
+
+        </div>
+
+    `;
+
+    card.onclick=()=>openExercise(index);
+
+    return card;
+}
+
+
+function openExercise(index){
+
+    selectedExercise=index;
+
+    const e=exercises[index];
+
+    document.getElementById("modalIcon").textContent=e.icon;
+    document.getElementById("modalTitle").textContent=e.name;
+    document.getElementById("modalDescription").textContent=e.desc;
+
+    timeLeft=e.time;
+    document.getElementById("timer").textContent=timeLeft;
+
+    document.getElementById("timerBtn").textContent="START TIMER";
+
+    document.getElementById("exerciseModal").classList.add("show");
+}
+
+
+function closeModal(){
+
+    clearInterval(timerInterval);
+
+    document.getElementById("exerciseModal").classList.remove("show");
+}
+
+
+function startTimer(){
+
+    if(timerInterval) return;
+
+    document.getElementById("timerBtn").textContent="RUNNING...";
+
+    timerInterval=setInterval(()=>{
+
+        timeLeft--;
+
+        document.getElementById("timer").textContent=timeLeft;
+
+        if(timeLeft<=0){
+
+            clearInterval(timerInterval);
+            timerInterval=null;
+
+            document.getElementById("timerBtn").textContent="DONE ✓";
+
+            if(selectedExercise!==null){
+                completeExercise(selectedExercise);
+            }
+        }
+
+    },1000);
+}
+
+
+function checkDailyCompletion(){
+    if(data.completed.length < exercises.length) return;
+
+    const today = new Date().toISOString().slice(0,10);
+
+    if(data.lastDay !== today){
+        data.streak = Math.min(30, data.streak + 1);
+        data.lastDay = today;
+
+
+    }
+}
+
+function completeExercise(index){
+
+    if(data.completed.includes(index)) return;
+
+    data.completed.push(index);
+    data.xp+=10;
+
+    checkDailyCompletion();
+    save();
+    updateUI();
+    renderExercises();
+}
+
+
+function startToday(){
+
+    showPage(
+        "home",
+        document.querySelector(".nav button")
+    );
+
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:"smooth"
+    });
+}
+
+
+function renderDays(){
+
+    const days=document.getElementById("days");
+
+    days.innerHTML="";
+
+    for(let i=1;i<=30;i++){
+
+        const div=document.createElement("div");
+
+        div.className="day";
+
+        if(i===data.streak+1){
+            div.classList.add("current");
+        }
+
+        if(i<=data.streak){
+            div.classList.add("completed");
+        }
+
+        div.textContent="DAY "+i;
+
+        days.appendChild(div);
+    }
+}
+
+
+function updateUI(){
+
+    const percent=Math.round(
+        (data.completed.length/exercises.length)*100
+    );
+
+    document.getElementById("progressText").textContent=percent+"%";
+    document.getElementById("progressFill").style.width=percent+"%";
+
+    document.getElementById("xp").textContent=data.xp;
+    document.getElementById("xpText").textContent=data.xp+" XP";
+
+    document.getElementById("xpBar").style.width=
+        Math.min(100,(data.xp/500)*100)+"%";
+
+    document.getElementById("daysDone").textContent=data.streak;
+    document.getElementById("streak").textContent=data.streak;
+
+    let level="PEMULA";
+
+    if(data.xp>=500) level="MASTER";
+    else if(data.xp>=300) level="DEVELOPER";
+    else if(data.xp>=100) level="CODER";
+
+    document.getElementById("levelName").textContent=level;
+
+    renderDays();
+}
+
+
+function runScan(){
+
+    const status=document.getElementById("scanStatus");
+
+    status.textContent="SCANNING...";
+
+    document.getElementById("symmetry").textContent="...";
+    document.getElementById("eyeAlign").textContent="...";
+    document.getElementById("jawAlign").textContent="...";
+    document.getElementById("posture").textContent="...";
+
+    setTimeout(()=>{
+
+        const values=[
+            ["symmetry","92%"],
+            ["eyeAlign","GOOD"],
+            ["jawAlign","GOOD"],
+            ["posture","CHECKED"]
+        ];
+
+        values.forEach(v=>{
+            document.getElementById(v[0]).textContent=v[1];
+        });
+
+        status.textContent="SCAN COMPLETE";
+
+    },2200);
+}
+
+
+
+function analyzeAngle(index){
+    const states = [
+        {state:"ANALYZED", values:[["a0sym","92%"],["a0align","GOOD"]]},
+        {state:"ANALYZED", values:[["a1align","GOOD"],["a1pose","STABLE"]]},
+        {state:"ANALYZED", values:[["a2align","GOOD"],["a2pose","STABLE"]]},
+        {state:"ANALYZED", values:[["a3align","GOOD"],["a3pose","STABLE"]]}
+    ];
+
+    const item = states[index];
+    document.getElementById("a"+index+"state").textContent="SCANNING...";
+
+    setTimeout(()=>{
+        document.getElementById("a"+index+"state").textContent=item.state;
+        item.values.forEach(v=>{
+            document.getElementById(v[0]).textContent=v[1];
+        });
+
+        const done=[0,1,2,3].filter(i=>{
+            return document.getElementById("a"+i+"state").textContent==="ANALYZED";
+        }).length;
+
+        if(done===4){
+            document.getElementById("angleOverall").textContent="CONSISTENT";
+        }
+    },900);
+}
+
+function resetData(){
+
+    if(confirm("Reset semua progress?")){
+
+        data={
+            completed:[],
+            xp:0,
+            streak:0,
+            lastDay:""
+        };
+
+        save();
+        renderExercises();
+        updateUI();
+    }
+}
+
+
+renderExercises();
+updateUI();
+
+</script>
+
+</body>
+</html>
